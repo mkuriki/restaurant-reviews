@@ -1,0 +1,15 @@
+<h2>Restaurant List</h2>
+
+<%= link_to "(+) Add New Restaurant", new_restaurant_path, class: "menu" %><br /><br />
+
+<% if @restaurants.empty? %>
+  <p>No restaurant listed.</p>
+<% else %>
+  <ol>
+    <% @restaurants.each do |r| %>
+      <li><h3><%= link_to r.name, restaurant_path(r.id) %></h3><br />
+        <%= r.city %>, <%= r.state %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>

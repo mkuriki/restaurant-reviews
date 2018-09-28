@@ -1,0 +1,28 @@
+<%= form_for @review, url: url do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error">
+      <strong><%= pluralize(@review.errors.count, "error") %> prohibited this movie from being added:</strong>
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>* Required Field</p>
+
+  <div class="field">
+    <%= f.label :rating, "Rating *" %>
+    <%= f.text_field :rating %> (range: 1 - 5)
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Review *" %>
+    <%= f.text_area :body, cols: 30, rows: 5 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Review" %>
+  </div>
+<% end %>

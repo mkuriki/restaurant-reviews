@@ -1,0 +1,22 @@
+<h2><%= @restaurant.name %></h2>
+
+<p><%= @restaurant.address %>, <%= @restaurant.city %>, <%= @restaurant.state %> <%= @restaurant.zip %></p>
+
+<p><%= @restaurant.description %></p>
+
+<p><strong>Categories:</strong>
+  <%= safe_join @restaurant.categories.map { |c| link_to "#{c.name}", category_path(c)}, ', ' %>
+</p><br />
+
+<h3>Reviews</h3><br /><br />
+
+<%= link_to "(+) Add a Review", new_restaurant_review_path(@restaurant), class: "menu" %>
+
+<ul>
+  <% @restaurant.reviews.order(created_at: :desc).each do |r| %>
+    <li><span class="posted_dt"><%= r.created_at.strftime("%B %d %Y") %></span><br />
+      <strong>Rating:</strong> <%= r.rating %><br />
+      <strong>Comment:</strong> <%= r.body %>
+    </li>
+  <% end %>
+</ul>

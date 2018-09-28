@@ -1,0 +1,11 @@
+<h2>Category: <%= @category.name %></h2>
+
+<% if @category.restaurants.empty? %>
+  <p>No restaurant listed.</p>
+<% else %>
+  <ol>
+    <% @category.restaurants.each do |r| %>
+      <li><%= link_to r.name, restaurant_path(r.id) %></li>
+    <% end %>
+  </ol>
+<% end %>
